@@ -8,23 +8,25 @@
 //  Exposed functions with custom logic https://developer.holochain.org/API_reference
 // -----------------------------------------------------------------
 
-function postCreate (postEntry) {
+function postCreate(postEntry) {
   var postHash = commit("post", postEntry);
+  // Link from post to user
+  commit("postLink", { Links: [{ Base: postHash, Link: App.Agent.Hash, Tag: "creator" }] });
   return postHash;
 }
 
-function postRead (postHash) {
+function postRead(postHash) {
   var post = get(postHash);
   return post;
 }
 
-function postUpdate (postHash) {
-  var sampleValue={"content":"a string","review":4,"extraField":true};
+function postUpdate(postHash) {
+  var sampleValue = { "content": "a string", "review": 4, "extraField": true };
   var postOutHash = update("post", sampleValue, postHash);
   return postOutHash;
 }
 
-function postDelete (postHash) {
+function postDelete(postHash) {
   var result = remove(postHash, "");
   return result;
 }
@@ -38,8 +40,31 @@ function postDelete (postHash) {
  * Called only when your source chain is generated
  * @return {boolean} success
  */
-function genesis () {
+function genesis() {
   return true;
+}
+
+function validate(entryName, entry, header, pkg, sources) {
+  switch (entryName) {
+    case "post":
+      if (entry.review < 0 || entry.review > 5) {
+        return false;
+      }
+      return true;
+    case "postLink":
+      var link = entry.Links[0];
+      var baseType = get(link.Base, { GetMask: HC.GetMask.EntryType });
+      if (baseType != "post") {
+        return false;
+      }
+      switch (link.Tag) {
+        case "creator":
+          var linkType = get(link.Link, { GetMask: HC.GetMask.EntryType });
+          return linkType == "%agent";
+        default:
+          return false;
+      }
+  }
 }
 
 // -----------------------------------------------------------------
@@ -55,18 +80,16 @@ function genesis () {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateCommit (entryName, entry, header, pkg, sources) {
+function validateCommit(entryName, entry, header, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
   switch (entryName) {
     case "post":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      return true;
     case "postLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      return true;
     default:
       // invalid entry name
       return false;
@@ -82,18 +105,16 @@ function validateCommit (entryName, entry, header, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validatePut (entryName, entry, header, pkg, sources) {
+function validatePut(entryName, entry, header, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
   switch (entryName) {
     case "post":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      return true;
     case "postLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      return true;
     default:
       // invalid entry name
       return false;
@@ -110,18 +131,24 @@ function validatePut (entryName, entry, header, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateMod (entryName, entry, header, replaces, pkg, sources) {
+function validateMod(entryName, entry, header, replaces, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
+  var replaced = get(replaces);
+
   switch (entryName) {
     case "post":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      // return true if creator is same person sending request to modify
+      return get(replaces, { GetMask: HC.GetMask.Sources })[0] == sources[0];
     case "postLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      switch (replaced.Tag) {
+        case "creator":
+          return false;
+        default:
+          return false;
+      }
     default:
       // invalid entry name
       return false;
@@ -136,7 +163,7 @@ function validateMod (entryName, entry, header, replaces, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateDel (entryName, hash, pkg, sources) {
+function validateDel(entryName, hash, pkg, sources) {
   switch (entryName) {
     case "post":
       // be sure to consider many edge cases for validating
@@ -163,7 +190,7 @@ function validateDel (entryName, hash, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateLink (entryName, baseHash, links, pkg, sources) {
+function validateLink(entryName, baseHash, links, pkg, sources) {
   switch (entryName) {
     case "post":
       // be sure to consider many edge cases for validating
@@ -186,7 +213,7 @@ function validateLink (entryName, baseHash, links, pkg, sources) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validatePutPkg (entryName) {
+function validatePutPkg(entryName) {
   return null;
 }
 
@@ -195,7 +222,7 @@ function validatePutPkg (entryName) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validateModPkg (entryName) {
+function validateModPkg(entryName) {
   return null;
 }
 
@@ -204,7 +231,7 @@ function validateModPkg (entryName) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validateDelPkg (entryName) {
+function validateDelPkg(entryName) {
   return null;
 }
 
@@ -213,6 +240,6 @@ function validateDelPkg (entryName) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validateLinkPkg (entryName) {
+function validateLinkPkg(entryName) {
   return null;
 }

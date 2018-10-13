@@ -8,7 +8,7 @@
         "content": "a string",
         "review": 4
       },
-      "Output": "%h%"
+      "Output": "%h1%"
     },
     {
       "Convey": "auto-generated test for postRead",
