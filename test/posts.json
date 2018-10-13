@@ -1,0 +1,38 @@
+{
+  "Tests": [
+    {
+      "Convey": "auto-generated test for postCreate",
+      "Zome": "posts",
+      "FnName": "postCreate",
+      "Input": {
+        "content": "a string",
+        "review": 4
+      },
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for postRead",
+      "Zome": "posts",
+      "FnName": "postRead",
+      "Input": "%h%",
+      "Output": {
+        "content": "a string",
+        "review": 4
+      }
+    },
+    {
+      "Convey": "auto-generated test for postUpdate",
+      "Zome": "posts",
+      "FnName": "postUpdate",
+      "Input": "%h%",
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for postDelete",
+      "Zome": "posts",
+      "FnName": "postDelete",
+      "Input": "%h%",
+      "Output": "%h%"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "properties": {
+    "facebookId": {
+      "$id": "#/properties/facebookId",
+      "type": "string",
+      "title": "The Facebookid Schema",
+      "default": "",
+      "examples": [
+        "facebook unique id"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "name"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "bio": {
+      "$id": "#/properties/bio",
+      "type": "string",
+      "title": "The Bio Schema",
+      "default": "",
+      "examples": [
+        "bio"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "languages": {
+      "$id": "#/properties/languages",
+      "type": "array",
+      "title": "The Languages Schema",
+      "default": null,
+      "items": {
+        "$id": "#/properties/languages/items",
+        "type": "string",
+        "title": "The Items Schema",
+        "default": "",
+        "examples": [
+          "en"
+        ],
+        "pattern": "^(.*)$"
+      }
+    },
+    "dob": {
+      "$id": "#/properties/dob",
+      "type": "string",
+      "title": "The Dob Schema",
+      "default": "",
+      "examples": [
+        "date"
+      ],
+      "format": "date"
+    },
+    "avatar": {
+      "$id": "#/properties/avatar",
+      "type": "string",
+      "title": "The Avatar Schema",
+      "default": "",
+      "examples": [
+        "base64 image data"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "gender": {
+      "$id": "#/properties/gender",
+      "type": "string",
+      "title": "The Gender Schema",
+      "default": "",
+      "examples": [
+        "(fe)male or something idk"
+      ],
+      "pattern": "^(.*)$"
+    }
+  },
+  "required": [
+    "name",
+    "dob",
+    "avatar"
+  ]
+}

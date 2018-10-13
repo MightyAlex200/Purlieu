@@ -1,0 +1,38 @@
+{
+  "Tests": [
+    {
+      "Convey": "auto-generated test for menuitemCreate",
+      "Zome": "menu_items",
+      "FnName": "menuitemCreate",
+      "Input": {
+        "age": 0,
+        "name": "a string"
+      },
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for menuitemRead",
+      "Zome": "menu_items",
+      "FnName": "menuitemRead",
+      "Input": "%h%",
+      "Output": {
+        "age": 0,
+        "name": "a string"
+      }
+    },
+    {
+      "Convey": "auto-generated test for menuitemUpdate",
+      "Zome": "menu_items",
+      "FnName": "menuitemUpdate",
+      "Input": "%h%",
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for menuitemDelete",
+      "Zome": "menu_items",
+      "FnName": "menuitemDelete",
+      "Input": "%h%",
+      "Output": "%h%"
+    }
+  ]
+}

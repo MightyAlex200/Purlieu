@@ -1,0 +1,56 @@
+{
+  "Tests": [
+    {
+      "Convey": "auto-generated test for userRead",
+      "Zome": "users",
+      "FnName": "userRead",
+      "Input": "%h%",
+      "Output": {
+        "facebookId": "facebook unique id",
+        "name": "name",
+        "bio": "bio",
+        "languages": [
+          "en"
+        ],
+        "dob": "date",
+        "avatar": "base64 image data",
+        "gender": "(fe)male or something idk"
+      }
+    },
+    {
+      "Convey": "auto-generated test for userUpdate",
+      "Zome": "users",
+      "FnName": "userUpdate",
+      "Input": "%h%",
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for locationCreate",
+      "Zome": "users",
+      "FnName": "locationCreate",
+      "Input": "test",
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for locationRead",
+      "Zome": "users",
+      "FnName": "locationRead",
+      "Input": "%h%",
+      "Output": "test"
+    },
+    {
+      "Convey": "auto-generated test for locationUpdate",
+      "Zome": "users",
+      "FnName": "locationUpdate",
+      "Input": "%h%",
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for locationDelete",
+      "Zome": "users",
+      "FnName": "locationDelete",
+      "Input": "%h%",
+      "Output": "%h%"
+    }
+  ]
+}

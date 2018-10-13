@@ -1,0 +1,31 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "content",
+    "review"
+  ],
+  "properties": {
+    "content": {
+      "$id": "#/properties/content",
+      "type": "string",
+      "title": "The Content Schema",
+      "default": "",
+      "pattern": "^(.*)$"
+    },
+    "review": {
+      "$id": "#/properties/review",
+      "type": "integer",
+      "title": "The Review Schema",
+      "default": 0,
+      "examples": [
+        4
+      ],
+      "minimum": 0,
+      "maximum": 5
+    }
+  }
+}

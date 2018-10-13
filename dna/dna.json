@@ -1,0 +1,252 @@
+{
+  "Version": 1,
+  "UUID": "141a0a72-57d6-4466-a628-2758fd98d60c",
+  "Name": "Purlieu",
+  "Properties": {
+    "description": "Review app + chat",
+    "language": "en"
+  },
+  "PropertiesSchemaFile": "properties_schema.json",
+  "DHTConfig": {
+    "HashType": "sha2-256"
+  },
+  "Zomes": [
+    {
+      "Name": "posts",
+      "Description": "posts",
+      "RibosomeType": "js",
+      "CodeFile": "posts.js",
+      "Entries": [
+        {
+          "Name": "post",
+          "Required": true,
+          "DataFormat": "json",
+          "Sharing": "public",
+          "SchemaFile": "post.json"
+        },
+        {
+          "Name": "postLink",
+          "Required": true,
+          "DataFormat": "links",
+          "Sharing": "public"
+        }
+      ],
+      "Functions": [
+        {
+          "Name": "postCreate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "postRead",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "postUpdate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "postDelete",
+          "CallingType": "json",
+          "Exposure": "public"
+        }
+      ]
+    },
+    {
+      "Name": "comments",
+      "Description": "comments",
+      "RibosomeType": "js",
+      "CodeFile": "comments.js",
+      "Entries": [
+        {
+          "Name": "comment",
+          "Required": true,
+          "DataFormat": "json",
+          "Sharing": "public",
+          "SchemaFile": "comment.json"
+        },
+        {
+          "Name": "commentlink",
+          "Required": true,
+          "DataFormat": "links",
+          "Sharing": "public"
+        }
+      ],
+      "Functions": [
+        {
+          "Name": "commentCreate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "commentRead",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "commentUpdate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "commentDelete",
+          "CallingType": "json",
+          "Exposure": "public"
+        }
+      ]
+    },
+    {
+      "Name": "menu_items",
+      "Description": "post menu items",
+      "RibosomeType": "js",
+      "CodeFile": "menu_items.js",
+      "Entries": [
+        {
+          "Name": "menuitem",
+          "Required": true,
+          "DataFormat": "json",
+          "Sharing": "public",
+          "SchemaFile": "menuitem.json"
+        },
+        {
+          "Name": "itemLink",
+          "Required": true,
+          "DataFormat": "links",
+          "Sharing": "public"
+        }
+      ],
+      "Functions": [
+        {
+          "Name": "menuitemCreate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "menuitemRead",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "menuitemUpdate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "menuitemDelete",
+          "CallingType": "json",
+          "Exposure": "public"
+        }
+      ]
+    },
+    {
+      "Name": "businesses",
+      "Description": "The businesses (restaurants, cafes, bars,  stores)",
+      "RibosomeType": "js",
+      "CodeFile": "businesses.js",
+      "Entries": [
+        {
+          "Name": "business",
+          "Required": true,
+          "DataFormat": "json",
+          "Sharing": "public",
+          "SchemaFile": "business.json"
+        },
+        {
+          "Name": "businessLink",
+          "Required": true,
+          "DataFormat": "links",
+          "Sharing": "public"
+        }
+      ],
+      "Functions": [
+        {
+          "Name": "businessCreate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "businessRead",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "businessUpdate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "businessDelete",
+          "CallingType": "json",
+          "Exposure": "public"
+        }
+      ]
+    },
+    {
+      "Name": "users",
+      "Description": "users",
+      "RibosomeType": "js",
+      "CodeFile": "users.js",
+      "Entries": [
+        {
+          "Name": "user",
+          "Required": true,
+          "DataFormat": "json",
+          "Sharing": "public",
+          "SchemaFile": "user.json"
+        },
+        {
+          "Name": "location",
+          "Required": true,
+          "DataFormat": "string",
+          "Sharing": "private"
+        },
+        {
+          "Name": "userPreferenceLink",
+          "Required": true,
+          "DataFormat": "links",
+          "Sharing": "private"
+        },
+        {
+          "Name": "userLink",
+          "Required": true,
+          "DataFormat": "links",
+          "Sharing": "public"
+        }
+      ],
+      "Functions": [
+        {
+          "Name": "userRead",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "userUpdate",
+          "CallingType": "json",
+          "Exposure": "public"
+        },
+        {
+          "Name": "locationCreate",
+          "CallingType": "string",
+          "Exposure": "private"
+        },
+        {
+          "Name": "locationRead",
+          "CallingType": "string",
+          "Exposure": "private"
+        },
+        {
+          "Name": "locationUpdate",
+          "CallingType": "string",
+          "Exposure": "private"
+        },
+        {
+          "Name": "locationDelete",
+          "CallingType": "string",
+          "Exposure": "private"
+        }
+      ]
+    }
+  ]
+}

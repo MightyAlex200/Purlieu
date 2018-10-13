@@ -1,0 +1,36 @@
+{
+  "Tests": [
+    {
+      "Convey": "auto-generated test for commentCreate",
+      "Zome": "comments",
+      "FnName": "commentCreate",
+      "Input": {
+        "comment": "text"
+      },
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for commentRead",
+      "Zome": "comments",
+      "FnName": "commentRead",
+      "Input": "%h%",
+      "Output": {
+        "comment": "text"
+      }
+    },
+    {
+      "Convey": "auto-generated test for commentUpdate",
+      "Zome": "comments",
+      "FnName": "commentUpdate",
+      "Input": "%h%",
+      "Output": "%h%"
+    },
+    {
+      "Convey": "auto-generated test for commentDelete",
+      "Zome": "comments",
+      "FnName": "commentDelete",
+      "Input": "%h%",
+      "Output": "%h%"
+    }
+  ]
+}

@@ -1,0 +1,499 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "name",
+    "description",
+    "hours",
+    "avatar",
+    "location",
+    "locationDescriptor"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "My store"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "a store that sells food"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "hours": {
+      "$id": "#/properties/hours",
+      "type": "object",
+      "title": "The Hours Schema",
+      "required": [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "properties": {
+        "sunday": {
+          "$id": "#/properties/hours/properties/sunday",
+          "type": "array",
+          "title": "The Sunday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/sunday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/sunday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/sunday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/sunday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        },
+        "monday": {
+          "$id": "#/properties/hours/properties/monday",
+          "type": "array",
+          "title": "The Monday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/monday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/monday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/monday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/monday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        },
+        "tuesday": {
+          "$id": "#/properties/hours/properties/tuesday",
+          "type": "array",
+          "title": "The Tuesday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/tuesday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/tuesday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/tuesday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/tuesday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        },
+        "wednesday": {
+          "$id": "#/properties/hours/properties/wednesday",
+          "type": "array",
+          "title": "The Wednesday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/wednesday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/wednesday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/wednesday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/wednesday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        },
+        "thursday": {
+          "$id": "#/properties/hours/properties/thursday",
+          "type": "array",
+          "title": "The Thursday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/thursday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/thursday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/thursday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/thursday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        },
+        "friday": {
+          "$id": "#/properties/hours/properties/friday",
+          "type": "array",
+          "title": "The Friday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/friday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/friday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/friday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/friday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        },
+        "saturday": {
+          "$id": "#/properties/hours/properties/saturday",
+          "type": "array",
+          "title": "The Saturday Schema",
+          "items": {
+            "$id": "#/properties/hours/properties/saturday/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "label",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "label": {
+                "$id": "#/properties/hours/properties/saturday/items/properties/label",
+                "type": "string",
+                "title": "The Label Schema",
+                "default": "",
+                "examples": [
+                  "breakfast"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "from": {
+                "$id": "#/properties/hours/properties/saturday/items/properties/from",
+                "type": "integer",
+                "title": "The From Schema",
+                "default": 0,
+                "examples": [
+                  0
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              },
+              "to": {
+                "$id": "#/properties/hours/properties/saturday/items/properties/to",
+                "type": "integer",
+                "title": "The To Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ],
+                "minimum": 0,
+                "maximum": 86400
+              }
+            }
+          }
+        }
+      }
+    },
+    "avatar": {
+      "$id": "#/properties/avatar",
+      "type": "string",
+      "title": "The Avatar Schema",
+      "default": "",
+      "examples": [
+        "base64 image data"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "location": {
+      "$id": "#/properties/location",
+      "type": "object",
+      "title": "The Location Schema",
+      "required": [
+        "lattitude",
+        "longitude"
+      ],
+      "properties": {
+        "lattitude": {
+          "$id": "#/properties/location/properties/lattitude",
+          "type": "integer",
+          "title": "The Lattitude Schema",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        },
+        "longitude": {
+          "$id": "#/properties/location/properties/longitude",
+          "type": "integer",
+          "title": "The Longitude Schema",
+          "default": 0,
+          "examples": [
+            0
+          ]
+        }
+      }
+    },
+    "locationDescriptor": {
+      "$id": "#/properties/locationDescriptor",
+      "type": "string",
+      "title": "The Locationdescriptor Schema",
+      "default": "",
+      "examples": [
+        "the place"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "contactInfo": {
+      "$id": "#/properties/contactInfo",
+      "type": "object",
+      "title": "The Contactinfo Schema",
+      "default": null,
+      "required": [
+        "email",
+        "phone",
+        "fax",
+        "address"
+      ],
+      "properties": {
+        "email": {
+          "$id": "#/properties/contactInfo/properties/email",
+          "type": "string",
+          "title": "The Email Schema",
+          "default": "",
+          "examples": [
+            "stuff"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "phone": {
+          "$id": "#/properties/contactInfo/properties/phone",
+          "type": "string",
+          "title": "The Phone Schema",
+          "default": "",
+          "examples": [
+            "stuff"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "fax": {
+          "$id": "#/properties/contactInfo/properties/fax",
+          "type": "string",
+          "title": "The Fax Schema",
+          "default": "",
+          "examples": [
+            "stuff"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "address": {
+          "$id": "#/properties/contactInfo/properties/address",
+          "type": "string",
+          "title": "The Address Schema",
+          "default": "",
+          "examples": [
+            "stuff"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}
