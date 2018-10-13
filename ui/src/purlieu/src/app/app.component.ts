@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'purlieu';
+  title = 'Purlieu';
+  sideNav = [
+    {
+      route: '/dashboard',
+      title: 'Dashboard'
+    }
+  ];
+
+  constructor(
+    private titleService: Title
+  ) {
+    this.setTitle(this.title);
+  }
+
+  // https://angular.io/guide/set-document-title
+  setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
+  }
 }
