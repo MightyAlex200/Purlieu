@@ -12,6 +12,8 @@ function menuitemCreate(input) {
   var menuitemHash = commit("menuitem", input.menuitemEntry);
   // Link from menuitem to business
   commit("itemLink", { Links: [{ Base: menuitemHash, Link: input.businessHash, Tag: "menuitem" }] });
+  // Link from business to menuitem
+  commit("businessLink", { Links: [{ Base: input.businessHash, Link: menuitemHash, Tag: "menuitem" }] });
   return menuitemHash;
 }
 
