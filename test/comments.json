@@ -1,19 +1,32 @@
 {
   "Tests": [
     {
+      "Convey": "Create something to comment on",
+      "Zome": "posts",
+      "FnName": "postCreate",
+      "Input": {
+        "content": "a string",
+        "review": 5
+      },
+      "Output": "%h1%"
+    },
+    {
       "Convey": "auto-generated test for commentCreate",
       "Zome": "comments",
       "FnName": "commentCreate",
       "Input": {
-        "comment": "text"
+        "commentEntry": {
+          "comment": "text"
+        },
+        "targetHash": "%h1%"
       },
-      "Output": "%h%"
+      "Output": "%h1%"
     },
     {
       "Convey": "auto-generated test for commentRead",
       "Zome": "comments",
       "FnName": "commentRead",
-      "Input": "%h%",
+      "Input": "%h1%",
       "Output": {
         "comment": "text"
       }

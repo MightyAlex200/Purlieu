@@ -150,8 +150,77 @@
       "Convey": "auto-generated test for businessUpdate",
       "Zome": "businesses",
       "FnName": "businessUpdate",
-      "Input": "%h%",
-      "Output": "%h%"
+      "Input": {
+        "businessEntry": {
+          "name": "My store",
+          "description": "a store that sells food",
+          "hours": {
+            "sunday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "monday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "tuesday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "wednesday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "thursday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "friday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "saturday": [
+              {
+                "label": "breakfast",
+                "from": 0,
+                "to": 1
+              }
+            ]
+          },
+          "avatar": "base64 image data",
+          "location": {
+            "lattitude": 0,
+            "longitude": 0
+          },
+          "locationDescriptor": "the place",
+          "contactInfo": {
+            "email": "stuff",
+            "phone": "stuff",
+            "fax": "stuff",
+            "address": "stuff"
+          }
+        },
+        "businessHash": "%h1%"
+      },
+      "Output": "%h1%"
     },
     {
       "Convey": "auto-generated test for businessDelete",

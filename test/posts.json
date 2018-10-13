@@ -14,7 +14,7 @@
       "Convey": "auto-generated test for postRead",
       "Zome": "posts",
       "FnName": "postRead",
-      "Input": "%h%",
+      "Input": "%h1%",
       "Output": {
         "content": "a string",
         "review": 4

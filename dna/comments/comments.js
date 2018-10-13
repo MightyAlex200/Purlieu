@@ -8,23 +8,24 @@
 //  Exposed functions with custom logic https://developer.holochain.org/API_reference
 // -----------------------------------------------------------------
 
-function commentCreate (commentEntry) {
-  var commentHash = commit("comment", commentEntry);
+function commentCreate(input) {
+  var commentHash = commit("comment", input.commentEntry);
+  commit("commentlink", { Links: [{ Base: input.targetHash, Link: commentHash, Tag: "comment" }] });
   return commentHash;
 }
 
-function commentRead (commentHash) {
+function commentRead(commentHash) {
   var comment = get(commentHash);
   return comment;
 }
 
-function commentUpdate (commentHash) {
-  var sampleValue={"comment":"text","extraField":true};
+function commentUpdate(commentHash) {
+  var sampleValue = { "comment": "text", "extraField": true };
   var commentOutHash = update("comment", sampleValue, commentHash);
   return commentOutHash;
 }
 
-function commentDelete (commentHash) {
+function commentDelete(commentHash) {
   var result = remove(commentHash, "");
   return result;
 }
@@ -38,7 +39,7 @@ function commentDelete (commentHash) {
  * Called only when your source chain is generated
  * @return {boolean} success
  */
-function genesis () {
+function genesis() {
   return true;
 }
 
@@ -46,29 +47,23 @@ function genesis () {
 //  Validation functions for every change to the local chain or DHT
 // -----------------------------------------------------------------
 
-/**
- * Called to validate any changes to the local chain or DHT
- * @param {string} entryName - the type of entry
- * @param {*} entry - the entry data to be set
- * @param {object} header - header for the entry containing properties EntryLink, Time, and Type
- * @param {*} pkg - the extra data provided by the validate[X]Pkg methods
- * @param {object} sources - an array of strings containing the keys of any authors of this entry
- * @return {boolean} is valid?
- */
-function validateCommit (entryName, entry, header, pkg, sources) {
+function validate(entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case "comment":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      return true;
     case "commentlink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      var link = entry.Links[0];
+      var linkType = get(link.Link, { GetMask: HC.GetMask.EntryType });
+      if (linkType != "comment") {
+        return false;
+      }
+      switch (link.Tag) {
+        case "comment":
+          return true;
+        default:
+          return false;
+      }
     default:
-      // invalid entry name
       return false;
   }
 }
@@ -82,20 +77,39 @@ function validateCommit (entryName, entry, header, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validatePut (entryName, entry, header, pkg, sources) {
+function validateCommit(entryName, entry, header, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
   switch (entryName) {
     case "comment":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "commentlink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      return true;
     default:
-      // invalid entry name
+      return false;
+  }
+}
+
+/**
+ * Called to validate any changes to the local chain or DHT
+ * @param {string} entryName - the type of entry
+ * @param {*} entry - the entry data to be set
+ * @param {object} header - header for the entry containing properties EntryLink, Time, and Type
+ * @param {*} pkg - the extra data provided by the validate[X]Pkg methods
+ * @param {object} sources - an array of strings containing the keys of any authors of this entry
+ * @return {boolean} is valid?
+ */
+function validatePut(entryName, entry, header, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
+  switch (entryName) {
+    case "comment":
+    case "commentlink":
+      return true;
+    default:
       return false;
   }
 }
@@ -110,20 +124,17 @@ function validatePut (entryName, entry, header, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateMod (entryName, entry, header, replaces, pkg, sources) {
+function validateMod(entryName, entry, header, replaces, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
   switch (entryName) {
     case "comment":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "commentlink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      var originalAuthors = get(replaces, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
     default:
-      // invalid entry name
       return false;
   }
 }
@@ -136,7 +147,7 @@ function validateMod (entryName, entry, header, replaces, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateDel (entryName, hash, pkg, sources) {
+function validateDel(entryName, hash, pkg, sources) {
   switch (entryName) {
     case "comment":
       // be sure to consider many edge cases for validating
@@ -163,7 +174,7 @@ function validateDel (entryName, hash, pkg, sources) {
  * @param {object} sources - an array of strings containing the keys of any authors of this entry
  * @return {boolean} is valid?
  */
-function validateLink (entryName, baseHash, links, pkg, sources) {
+function validateLink(entryName, baseHash, links, pkg, sources) {
   switch (entryName) {
     case "comment":
       // be sure to consider many edge cases for validating
@@ -186,7 +197,7 @@ function validateLink (entryName, baseHash, links, pkg, sources) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validatePutPkg (entryName) {
+function validatePutPkg(entryName) {
   return null;
 }
 
@@ -195,7 +206,7 @@ function validatePutPkg (entryName) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validateModPkg (entryName) {
+function validateModPkg(entryName) {
   return null;
 }
 
@@ -204,7 +215,7 @@ function validateModPkg (entryName) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validateDelPkg (entryName) {
+function validateDelPkg(entryName) {
   return null;
 }
 
@@ -213,6 +224,6 @@ function validateDelPkg (entryName) {
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
-function validateLinkPkg (entryName) {
+function validateLinkPkg(entryName) {
   return null;
 }

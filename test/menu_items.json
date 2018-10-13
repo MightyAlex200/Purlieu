@@ -9,7 +9,10 @@
         "description": "stuff",
         "hours": {},
         "avatar": "stuff",
-        "location": {"lattitude": 0, "longitude": 0},
+        "location": {
+          "lattitude": 0,
+          "longitude": 0
+        },
         "locationDescriptor": "stuff"
       },
       "Output": "%h%"
@@ -24,13 +27,13 @@
         },
         "businessHash": "%h%"
       },
-      "Output": "%h1%"
+      "Output": "%h2%"
     },
     {
       "Convey": "auto-generated test for menuitemRead",
       "Zome": "menu_items",
       "FnName": "menuitemRead",
-      "Input": "%h%",
+      "Input": "%h2%",
       "Output": {
         "name": "a string"
       }

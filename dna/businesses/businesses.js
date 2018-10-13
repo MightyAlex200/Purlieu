@@ -18,9 +18,8 @@ function businessRead(businessHash) {
   return business;
 }
 
-function businessUpdate(businessHash) {
-  var sampleValue = { "name": "My store", "description": "a store that sells food", "hours": { "sunday": [{ "label": "breakfast", "from": 0, "to": 1 }], "monday": [{ "label": "breakfast", "from": 0, "to": 1 }], "tuesday": [{ "label": "breakfast", "from": 0, "to": 1 }], "wednesday": [{ "label": "breakfast", "from": 0, "to": 1 }], "thursday": [{ "label": "breakfast", "from": 0, "to": 1 }], "friday": [{ "label": "breakfast", "from": 0, "to": 1 }], "saturday": [{ "label": "breakfast", "from": 0, "to": 1 }] }, "avatar": "base64 image data", "location": { "lattitude": 0, "longitude": 0 }, "locationDescriptor": "the place", "contactInfo": { "email": "stuff", "phone": "stuff", "fax": "stuff", "address": "stuff" }, "extraField": true };
-  var businessOutHash = update("business", sampleValue, businessHash);
+function businessUpdate(input) {
+  var businessOutHash = update("business", input.businessEntry, input.businessHash);
   return businessOutHash;
 }
 
@@ -129,19 +128,16 @@ function validatePut(entryName, entry, header, pkg, sources) {
  * @return {boolean} is valid?
  */
 function validateMod(entryName, entry, header, replaces, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
   switch (entryName) {
     case "business":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "businessLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      var originalAuthors = get(replaces, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
     default:
-      // invalid entry name
       return false;
   }
 }
