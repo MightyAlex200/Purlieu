@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   // https://angular.io/guide/set-document-title
-  setTitle( newTitle: string) {
-    this.titleService.setTitle( newTitle );
+  setTitle(title: string) {
+    this.titleService.setTitle(title);
   }
 }

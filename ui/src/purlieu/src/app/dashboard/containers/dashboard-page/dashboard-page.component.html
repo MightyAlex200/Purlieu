@@ -1,3 +1,31 @@
-<p>
-  dashboard-page works!
-</p>
+<mat-tab-group>
+  <mat-tab label="Create Post">
+    <h2>Create a Post</h2>
+  </mat-tab>
+  <mat-tab label="Create User">
+    <mat-card class="register-card">
+      <mat-card-title>Create a User</mat-card-title>
+      <mat-card-content>
+        <form #registerForm="ngForm" (keyup.enter)="registerForm.ngSubmit.emit()" (ngSubmit)="onSubmit(registerForm.form)">
+          <mat-form-field>
+            <input matInput placeholder="Choose a username" name="username" type="text" [(ngModel)]="model.username" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input #email="ngModel" matInput placeholder="Enter your email" name="email" [(ngModel)]="model.email" required [email]="true">
+            <mat-error *ngIf="email.invalid">{{ email.errors.required ? 'You must enter an email' : email.errors.email ? 'Not a valid email' : '' }}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Enter your password" name="password" type="password" [(ngModel)]="model.password" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Repeat your password" name="repeat-password" type="password" required>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button>Cancel</button>
+        <button mat-raised-button color="primary" (click)="registerForm.ngSubmit.emit()">Register</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
