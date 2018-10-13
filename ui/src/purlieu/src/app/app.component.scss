@@ -1,0 +1,32 @@
+// Import theming functions
+@import './src/styles';
+
+:host {
+  .main-container {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .side-nav {
+    width: 240px;
+  }
+
+
+  mat-nav-list {
+    padding-top: 0;
+
+    .mat-list-item {
+      &:hover,
+      &.active {
+        background: mat-color($accent);
+      }
+    }
+  }
+
+  main {
+    padding: 20px;
+  }
+}
