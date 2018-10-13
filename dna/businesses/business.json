@@ -38,13 +38,6 @@
       "type": "object",
       "title": "The Hours Schema",
       "required": [
-        "sunday",
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday"
       ],
       "properties": {
         "sunday": {
