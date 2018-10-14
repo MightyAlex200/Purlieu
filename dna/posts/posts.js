@@ -20,9 +20,8 @@ function postRead(postHash) {
   return post;
 }
 
-function postUpdate(postHash) {
-  var sampleValue = { "content": "a string", "review": 4, "extraField": true };
-  var postOutHash = update("post", sampleValue, postHash);
+function postUpdate(input) {
+  var postOutHash = update("post", input.postEntry, input.postHash);
   return postOutHash;
 }
 

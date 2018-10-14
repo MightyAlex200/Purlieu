@@ -22,9 +22,8 @@ function menuitemRead(menuitemHash) {
   return menuitem;
 }
 
-function menuitemUpdate(menuitemHash) {
-  var sampleValue = { "name": "a string", "extraField": true };
-  var menuitemOutHash = update("menuitem", sampleValue, menuitemHash);
+function menuitemUpdate(input) {
+  var menuitemOutHash = update("menuitem", input.menuitemEntry, input.menuitemHash);
   return menuitemOutHash;
 }
 

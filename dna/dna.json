@@ -229,22 +229,22 @@
         {
           "Name": "locationCreate",
           "CallingType": "string",
-          "Exposure": "private"
+          "Exposure": "public"
         },
         {
           "Name": "locationRead",
           "CallingType": "string",
-          "Exposure": "private"
+          "Exposure": "public"
         },
         {
           "Name": "locationUpdate",
-          "CallingType": "string",
-          "Exposure": "private"
+          "CallingType": "json",
+          "Exposure": "public"
         },
         {
           "Name": "locationDelete",
           "CallingType": "string",
-          "Exposure": "private"
+          "Exposure": "public"
         }
       ]
     }

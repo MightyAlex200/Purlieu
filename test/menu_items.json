@@ -42,7 +42,12 @@
       "Convey": "auto-generated test for menuitemUpdate",
       "Zome": "menu_items",
       "FnName": "menuitemUpdate",
-      "Input": "%h%",
+      "Input": {
+        "menuitemEntry": {
+          "name": "a better string"
+        },
+        "menuitemHash": "%h%"
+      },
       "Output": "%h%"
     },
     {

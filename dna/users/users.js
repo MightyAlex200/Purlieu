@@ -13,9 +13,8 @@ function userRead(userHash) {
   return user;
 }
 
-function userUpdate(userHash) {
-  var sampleValue = { "facebookId": "facebook unique id", "name": "name", "bio": "bio", "languages": ["en"], "dob": "date", "avatar": "base64 image data", "gender": "(fe)male or something idk", "extraField": true };
-  var userOutHash = update("user", sampleValue, userHash);
+function userUpdate(input) {
+  var userOutHash = update("user", input.userEntry, input.userHash);
   return userOutHash;
 }
 
@@ -25,13 +24,12 @@ function locationCreate(locationEntry) {
 }
 
 function locationRead(locationHash) {
-  var location = get(locationHash);
+  var location = get(locationHash, { Local: true });
   return location;
 }
 
-function locationUpdate(locationHash) {
-  var sampleValue = { "extraField": true };
-  var locationOutHash = update("location", sampleValue, locationHash);
+function locationUpdate(input) {
+  var locationOutHash = update("location", input.locationEntry, input.locationHash);
   return locationOutHash;
 }
 
@@ -153,27 +151,18 @@ function validatePut(entryName, entry, header, pkg, sources) {
  * @return {boolean} is valid?
  */
 function validateMod(entryName, entry, header, replaces, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
   switch (entryName) {
     case "user":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
-    case "location":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
-    case "userPreferenceLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "userLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+    case "userPreferenceLink":
+      var originalAuthors = get(replaces, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
+    case "location":
+      // Private entries do not have sources
+      return true;
     default:
       // invalid entry name
       return false;

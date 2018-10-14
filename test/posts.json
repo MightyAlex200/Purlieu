@@ -24,7 +24,13 @@
       "Convey": "auto-generated test for postUpdate",
       "Zome": "posts",
       "FnName": "postUpdate",
-      "Input": "%h%",
+      "Input": {
+        "postEntry": {
+          "content": "a better string",
+          "review": 5
+        },
+        "postHash": "%h%"
+      },
       "Output": "%h%"
     },
     {

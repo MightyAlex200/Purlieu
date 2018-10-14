@@ -21,7 +21,20 @@
       "Convey": "auto-generated test for userUpdate",
       "Zome": "users",
       "FnName": "userUpdate",
-      "Input": "%h%",
+      "Input": {
+        "userHash": "%h%",
+        "userEntry": {
+          "facebookId": "facebook uniquer id",
+          "name": "namer",
+          "bio": "bio-er",
+          "languages": [
+            "en-er"
+          ],
+          "dob": "dater",
+          "avatar": "base64 imager data",
+          "gender": "(fe)maler or something idk"
+        }
+      },
       "Output": "%h%"
     },
     {
@@ -42,7 +55,10 @@
       "Convey": "auto-generated test for locationUpdate",
       "Zome": "users",
       "FnName": "locationUpdate",
-      "Input": "%h%",
+      "Input": {
+        "locationHash": "%h%",
+        "locationEntry": "other location"
+      },
       "Output": "%h%"
     },
     {
