@@ -8,13 +8,13 @@
         "content": "a string",
         "review": 4
       },
-      "Output": "%h1%"
+      "Output": "%h2%"
     },
     {
       "Convey": "auto-generated test for postRead",
       "Zome": "posts",
       "FnName": "postRead",
-      "Input": "%h1%",
+      "Input": "%h2%",
       "Output": {
         "content": "a string",
         "review": 4

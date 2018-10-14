@@ -12,6 +12,8 @@ function postCreate(postEntry) {
   var postHash = commit("post", postEntry);
   // Link from post to user
   commit("postLink", { Links: [{ Base: postHash, Link: App.Agent.Hash, Tag: "creator" }] });
+  // Link from user to post
+  commit("postLink", { Links: [{ Base: App.Agent.Hash, Link: postHash, Tag: "post" }] });
   return postHash;
 }
 
@@ -53,13 +55,19 @@ function validate(entryName, entry, header, pkg, sources) {
     case "postLink":
       var link = entry.Links[0];
       var baseType = get(link.Base, { GetMask: HC.GetMask.EntryType });
-      if (baseType != "post") {
-        return false;
-      }
       switch (link.Tag) {
         case "creator":
+          if (baseType != "post") {
+            return false;
+          }
           var linkType = get(link.Link, { GetMask: HC.GetMask.EntryType });
           return linkType == "%agent";
+        case "post":
+          if (baseType != "%agent") {
+            return false;
+          }
+          var linkType = get(link.Link, { GetMask: HC.GetMask.EntryType });
+          return linkType == "post";
         default:
           return false;
       }

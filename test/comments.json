@@ -8,7 +8,7 @@
         "content": "a string",
         "review": 5
       },
-      "Output": "%h1%"
+      "Output": "%h2%"
     },
     {
       "Convey": "auto-generated test for commentCreate",
@@ -18,7 +18,7 @@
         "commentEntry": {
           "comment": "text"
         },
-        "targetHash": "%h1%"
+        "targetHash": "%h2%"
       },
       "Output": "%h1%"
     },
