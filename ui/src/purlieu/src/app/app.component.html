@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <button type="button" mat-button (click)="sidenav.toggle()">
+    Toggle sidenav
+  </button>
+</mat-toolbar>
+
+<div class="main-container">
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav class="side-nav" mode="side" opened="true">
+      <mat-nav-list>
+        <ng-container *ngFor="let link of sideNav">
+           <a mat-list-item routerLink="{{ link.route }}" routerLinkActive="active">{{ link.title }}</a>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
