@@ -38,6 +38,10 @@ function locationDelete(locationHash) {
   return result;
 }
 
+function follow(user) {
+  commit("userLink", { Links: [{ Base: App.Agent.Hash, Link: user, Tag: "follows" }] });
+  commit("userLink", { Links: [{ Base: user, Link: App.Agent.Hash, Tag: "followedBy" }] });
+}
 
 // -----------------------------------------------------------------
 //  The Genesis Function https://developer.holochain.org/genesis
@@ -49,6 +53,7 @@ function locationDelete(locationHash) {
  */
 function genesis() {
   // TODO
+  debug("agent hash: " + App.Agent.Hash);
   commit("user", { "avatar": "base64 image data", "bio": "bio", "dob": "date", "facebookId": "facebook unique id", "gender": "(fe)male or something idk", "languages": ["en"], "name": "name" });
   return true;
 }
@@ -75,7 +80,7 @@ function validate(entryName, entry, header, pkg, sources) {
       }
     case "userLink":
       var link = entry.Links[0];
-      var baseType = get(link.Base, { GetMask: HC.GetMask.EntryName });
+      var baseType = get(link.Base, { GetMask: HC.GetMask.EntryType });
       if (baseType != "%agent") {
         return false;
       }

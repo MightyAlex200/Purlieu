@@ -51,6 +51,26 @@
           "Name": "postDelete",
           "CallingType": "json",
           "Exposure": "public"
+        },
+        {
+          "Name": "userPosts",
+          "CallingType": "string",
+          "Exposure": "public"
+        },
+        {
+          "Name": "followingPosts",
+          "CallingType": "string",
+          "Exposure": "public"
+        },
+        {
+          "Name": "friendPosts",
+          "CallingType": "string",
+          "Exposure": "public"
+        },
+        {
+          "Name": "myPosts",
+          "CallingType": "string",
+          "Exposure": "public"
         }
       ]
     },
@@ -243,6 +263,11 @@
         },
         {
           "Name": "locationDelete",
+          "CallingType": "string",
+          "Exposure": "public"
+        },
+        {
+          "Name": "follow",
           "CallingType": "string",
           "Exposure": "public"
         }

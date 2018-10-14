@@ -32,6 +32,31 @@ function postDelete(postHash) {
   return result;
 }
 
+function internalUserPosts(user) {
+  return getLinks(user, "post", { Load: true });
+}
+
+function userPosts(user) {
+  return JSON.stringify(internalUserPosts(user));
+}
+
+function myPosts() {
+  return JSON.stringify(internalUserPosts(App.Agent.Hash));
+}
+
+function followingPosts() {
+  var peopleFollowing = getLinks(App.Agent.Hash, "follows");
+  var posts = [];
+  for (var i = 0; i < peopleFollowing.length; i++) {
+    posts = posts.concat(internalUserPosts(peopleFollowing[i].Hash));
+  }
+  return JSON.stringify(posts);
+}
+
+function friendPosts() {
+  // TODO
+  throw "Not implemented";
+}
 
 // -----------------------------------------------------------------
 //  The Genesis Function https://developer.holochain.org/genesis
