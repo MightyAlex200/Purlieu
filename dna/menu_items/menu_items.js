@@ -87,14 +87,7 @@ function validateCommit(entryName, entry, header, pkg, sources) {
 
   switch (entryName) {
     case "menuitem":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return true;
     case "itemLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
       return true;
     default:
       // invalid entry name
@@ -118,14 +111,7 @@ function validatePut(entryName, entry, header, pkg, sources) {
 
   switch (entryName) {
     case "menuitem":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return true;
     case "itemLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
       return true;
     default:
       // invalid entry name
@@ -150,15 +136,9 @@ function validateMod(entryName, entry, header, replaces, pkg, sources) {
 
   switch (entryName) {
     case "menuitem":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return true;
     case "itemLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return true;
+      var originalAuthors = get(replaces, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
     default:
       // invalid entry name
       return false;
@@ -180,15 +160,9 @@ function validateDel(entryName, hash, pkg, sources) {
 
   switch (entryName) {
     case "menuitem":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return true;
     case "itemLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return true;
+      var originalAuthors = get(hash, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
     default:
       // invalid entry name
       return false;
@@ -207,15 +181,11 @@ function validateDel(entryName, hash, pkg, sources) {
 function validateLink(entryName, baseHash, links, pkg, sources) {
   switch (entryName) {
     case "menuitem":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
+      // Not a link
       return false;
     case "itemLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      // Already validated by validatePut
+      return true;
     default:
       // invalid entry name
       return false;

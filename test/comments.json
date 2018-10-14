@@ -35,7 +35,12 @@
       "Convey": "auto-generated test for commentUpdate",
       "Zome": "comments",
       "FnName": "commentUpdate",
-      "Input": "%h%",
+      "Input": {
+        "commentHash": "%h%",
+        "commentEntry": {
+          "comment": "other text"
+        }
+      },
       "Output": "%h%"
     },
     {

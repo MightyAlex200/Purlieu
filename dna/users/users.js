@@ -178,27 +178,20 @@ function validateMod(entryName, entry, header, replaces, pkg, sources) {
  * @return {boolean} is valid?
  */
 function validateDel(entryName, hash, pkg, sources) {
+  if (!validate(entryName, entry, header, pkg, sources)) {
+    return false;
+  }
+
   switch (entryName) {
     case "user":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
       return false;
     case "location":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      // Private entries do not have sources
+      return true;
     case "userPreferenceLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "userLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      var originalAuthors = get(hash, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
     default:
       // invalid entry name
       return false;
@@ -217,25 +210,13 @@ function validateDel(entryName, hash, pkg, sources) {
 function validateLink(entryName, baseHash, links, pkg, sources) {
   switch (entryName) {
     case "user":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "location":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
+      // Not a link
       return false;
     case "userPreferenceLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "userLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      // Already validated by validatePut
+      return true;
     default:
       // invalid entry name
       return false;

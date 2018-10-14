@@ -86,7 +86,6 @@ function validateCommit(entryName, entry, header, pkg, sources) {
 
   switch (entryName) {
     case "post":
-      return true;
     case "postLink":
       return true;
     default:
@@ -111,7 +110,6 @@ function validatePut(entryName, entry, header, pkg, sources) {
 
   switch (entryName) {
     case "post":
-      return true;
     case "postLink":
       return true;
     default:
@@ -135,13 +133,13 @@ function validateMod(entryName, entry, header, replaces, pkg, sources) {
     return false;
   }
 
-  var replaced = get(replaces);
 
   switch (entryName) {
     case "post":
       // return true if creator is same person sending request to modify
       return get(replaces, { GetMask: HC.GetMask.Sources })[0] == sources[0];
     case "postLink":
+      var replaced = get(replaces);
       switch (replaced.Tag) {
         case "creator":
           return false;
@@ -165,15 +163,9 @@ function validateMod(entryName, entry, header, replaces, pkg, sources) {
 function validateDel(entryName, hash, pkg, sources) {
   switch (entryName) {
     case "post":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
     case "postLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      var originalAuthors = get(hash, { GetMask: HC.GetMask.Sources });
+      return originalAuthors[0] == sources[0];
     default:
       // invalid entry name
       return false;
@@ -192,15 +184,11 @@ function validateDel(entryName, hash, pkg, sources) {
 function validateLink(entryName, baseHash, links, pkg, sources) {
   switch (entryName) {
     case "post":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
+      // Not a link
       return false;
     case "postLink":
-      // be sure to consider many edge cases for validating
-      // do not just flip this to true without considering what that means
-      // the action will ONLY be successfull if this returns true, so watch out!
-      return false;
+      // Already validated
+      return true;
     default:
       // invalid entry name
       return false;
